@@ -87,6 +87,18 @@
               </configuration>" > hdfs-site.xml''')
               pyttsx3.speak('configuration completed')
               break
+                  
+          #starting namenode   
+          elif ("hadoop" in p) and ("start" in p) and (("master" in p) or ("name" in p)):
+              pyttsx3.speak("starting namenode")
+              os.system("hadoop-daemon.sh start namenode")
+              pyttsx3.speak("namenode has started")
+            
+          #starting datanode       
+          elif ("hadoop" in p) and ("start" in p) and (("slave" in p) or ("data" in p)):
+              pyttsx3.speak("starting namenode")
+              os.system("hadoop-daemon.sh start namenode")
+              pyttsx3.speak("datanode has started")
             
           elif ("exit" in p) or ("quit" in p) or ("terminate" in p) or ("end" in p):
               print("Thanks, see yoy again.")
