@@ -35,6 +35,7 @@
               continue
             
           #hadoop configuration
+          #name node configuration
           elif ("hadoop" in p) and (("configure" in p) or q) and (("master" in p) or ("name" in p)):
               pyttsx3.speak('configuring master node')
               os.system('''cd /etc/hadoop;mkdir /nn;echo "<?xml version="1.0"?>
@@ -56,6 +57,32 @@
               <property>
               <name>dfs.name.dir</name>
               <value>/nn</value>
+              </property>
+              </configuration>" > hdfs-site.xml''')
+              pyttsx3.speak('configuration completed')
+              break
+          #data node configuration
+          elif ("hadoop" in p) and (("configure" in p) or q) and (("slave" in p) or ("data" in p)):
+              pyttsx3.speak('configuring master node')
+              os.system('''cd /etc/hadoop;mkdir /dn;echo "<?xml version="1.0"?>
+              <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+              <!-- Put site-specific property overrides in this file. -->
+
+              <configuration>
+              <property>
+              <name>fs.default.data</name>
+              <value>hdfs://0.0.0.0:9001</value>
+              </property>
+              </configuration>" > core-site.xml; echo "<?xml version="1.0"?>
+              <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+              <!-- Put site-specific property overrides in this file. -->
+
+              <configuration>
+              <property>
+              <name>dfs.data.dir</name>
+              <value>/dn</value>
               </property>
               </configuration>" > hdfs-site.xml''')
               pyttsx3.speak('configuration completed')
