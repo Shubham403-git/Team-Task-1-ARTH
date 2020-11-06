@@ -26,10 +26,41 @@
 
           except sr.RequestError.with_traceback:
                   pyttsx3.speak('Sorry, my service is down')
+                  
+          q=(('run' in p) or ('launch' in p) or ('execute' in p) or ('open' in p) or ('connect' in p))
+      
           if (('do not' in p )or ('do nothing' in p) or ("don't" in p) or ('never' in p)):
               pyttsx3.speak('ok as your wish')
               print('ok as your wish')
               continue
+            
+          #hadoop configuration
+          elif ("hadoop" in p) and (("configure" in p) or q) and (("master" in p) or ("name" in p)):
+              pyttsx3.speak('configuring master node')
+              os.system('''cd /etc/hadoop;mkdir /nn;echo "<?xml version="1.0"?>
+              <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+              <!-- Put site-specific property overrides in this file. -->
+
+              <configuration>
+              <property>
+              <name>fs.default.name</name>
+              <value>hdfs://0.0.0.0:9001</value>
+              </property>
+              </configuration>" > core-site.xml; echo "<?xml version="1.0"?>
+              <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+              <!-- Put site-specific property overrides in this file. -->
+
+              <configuration>
+              <property>
+              <name>dfs.name.dir</name>
+              <value>/nn</value>
+              </property>
+              </configuration>" > hdfs-site.xml''')
+              pyttsx3.speak('configuration completed')
+              break
+            
           elif ("exit" in p) or ("quit" in p) or ("terminate" in p) or ("end" in p):
               print("Thanks, see yoy again.")
               pyttsx3.speak("Thanks, see yoy again.")
