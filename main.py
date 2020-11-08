@@ -22,7 +22,7 @@ while True:
 		except sr.UnknownValueError:
                 	pyttsx3.speak('Sorry, I did not get that')
 			continue
-		except sr.RequestError.with_traceback:9[
+		except sr.RequestError.with_traceback:
 			pyttsx3.speak('Sorry, my service is down')
                   
 	q=(('run' in p) or ('launch' in p) or ('execute' in p) or ('open' in p) or ('connect' in p)) or ('launch' in p) or ('create' in p)or ('make' in p) 
