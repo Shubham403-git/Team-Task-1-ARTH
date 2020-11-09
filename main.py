@@ -7,9 +7,8 @@ import time
 import webbrowser
 from datetime import date
 import speech_recognition as sr
-pyttsx3.speak("Welcome to my text  based chatbot named Dora")
 pyttsx3.speak("Tell me your requirments:")
-print("Supports onlu local login till now\n Remote login coming soon")
+print("*******Supports only local login till now******\n******Remote login coming soon******")
 while True:
     r = sr.Recognizer()
     with sr.Microphone() as source:
@@ -246,4 +245,6 @@ while True:
         os_name=input('Enter your os name/id to remove  :-  ')
         o=sp.getstatusoutput('docker rm {}'.format(os_name))
         print(o[1])
-     
+    else:
+        print("Sorry, we are updating us to support the same.")
+        pyttsx3.speak("Sorry, we are updating us to support the same.")    
